@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Testimonials</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="assets/css/main.css" />
+    </head>
+    <body>
+        <!-- Header -->
+        <header style="text-align: center; padding: 20px;">
+            <h1>Testimonials</h1>
+            <a href="index.html" style="display: inline-block; margin-top: 10px; text-decoration: none; color: #007acc;">Back to Home</a>
+        </header>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" style="padding: 20px; max-width: 800px; margin: auto;">
+            <h2>What People I have Worked Closely with Say</h2>
+            <div id="testimonialList"></div>
+        </section>
+
+        <!-- Script to Load Testimonials -->
+        <script>
+            fetch('https://script.google.com/macros/s/AKfycbzLA-qjW73vlIPgV-K0ZjMtfQIsP2qI7VJ9dlrBAPuKQww1AeJ3rAp7_YKWFrlqCyPr/exec')
+                .then(response => response.json())
+                .then(data => {
+                    const testimonialList = document.getElementById('testimonialList');
+                    data.forEach(item => {
+                        const testimonial = document.createElement('div');
+                        testimonial.classList.add('testimonial');
+                        testimonial.innerHTML = `<strong>ex-Colleague from "${item.WhereDidWeWorkTogether}"</strong><p>${item.HowDidIAddValue}</p>`;
+                        testimonialList.appendChild(testimonial);
+                    });
+                })
+                .catch(error => console.error('Error fetching testimonials:', error));
+        </script>
+    </body>
+</html>
